@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import { HelloWorld } from './components/HelloWorld'
+// import { HelloWorld } from './components/HelloWorld'
+import { SignIn } from './components/SignIn';
 // import HelloWorld from './components/HelloWorld'
 
 class App extends Component {
+	state = {
+		name: 'Jessica',
+		email: '',
+		password: ''
+	}
+	changeName = () => {
+		this.setState({
+			name: 'Mabeth'
+		})
+	}
+
+	setNameAndPassword = (user) => {
+		this.setState({
+			email: user.email,
+			password: user.password
+		})
+	}
+
 	render() {
 		return (
-			<HelloWorld 
-			name={'Santiago'}
-			lastname={'martinez'}
-			age={'45'}
-			work={'IBM'}
+			<div>
+				<h1>{this.state.name}</h1>
+				{this.state.email !== '' && <h3>{this.state.email}</h3>}
+				{/* <h3>{this.state.email}</h3> */}
+				<h3>{this.state.password}</h3>
+			<SignIn 
+			name={this.name}
+			changeName={this.changeName}
+			setNameAndPassword={this.setNameAndPassword}
 			/>
+			</div>
 		);
 	}
 }
